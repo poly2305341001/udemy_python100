@@ -34,6 +34,7 @@
 #Hint 4: Create a deal_card() function that uses the List below to *return* a random card.
 #11 is the Ace.
 import random
+from d011_module import logo
 
 def deal_card():
     cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
@@ -50,13 +51,9 @@ def calculate_score(cards_list):
             cards_list.append(1)
     return score
 
-def continue_game(cards_list):
-    if calculate_score(cards_list) == 0 or calculate_score(cards_list) > 21:
-        return False
-    else:
-        return True
-
 def compare():
+    print(f"    Your final hand: {user_cards}, final score: {calculate_score(user_cards)}")
+    print(f"    Computer's final hand: {computer_cards}, final score: {calculate_score(computer_cards)}")
     if calculate_score(user_cards) == calculate_score(computer_cards):
         print("It's a draw")
     elif calculate_score(computer_cards) == 0:
@@ -73,13 +70,19 @@ def compare():
         print("You lose.")
 
 #Hint 5: Deal the user and computer 2 cards each using deal_card() and append().
-while retry:
+while 1:
+    print(logo)
+    
     user_cards = []
     computer_cards = []
 
-    user_cards.append(deal_card(), deal_card())
-    computer_cards.append(deal_card(), deal_card())
+    user_cards.append(deal_card())
+    user_cards.append(deal_card())
+    computer_cards.append(deal_card())    
+    computer_cards.append(deal_card())
 
+    print(f"    Your cards: {user_cards}, current score: {calculate_score(user_cards)}")
+    print(f"    Computer's first card: {computer_cards[0]}")
     #Hint 6: Create a function called calculate_score() that takes a List of cards as input 
     #and returns the score. 
     #Look up the sum() function to help you do this.
@@ -87,18 +90,18 @@ while retry:
     #Hint 8: Inside calculate_score() check for an 11 (ace). If the score is already over 21, remove the 11 and replace it with a 1. You might need to look up append() and remove().
     #Hint 9: Call calculate_score(). If the computer or the user has a blackjack (0) or if the user's score is over 21, then the game ends.
         
-    while continue_game(user_cards) or continue_game(computer_cards):
+    while not(calculate_score(user_cards) == 0 or calculate_score(user_cards) > 21):
         more_card = input("Do you want another card? (y/n)\n ").lower()
         if more_card == "y":
             user_cards.append(deal_card())
-            if calculate_score(computer_cards) < 17:
+            print(f"    Your cards: {user_cards}, current score: {calculate_score(user_cards)}")
+            print(f"    Computer's first card: {computer_cards[0]}")
+
+            while calculate_score(computer_cards) < 17:
                 computer_cards.append(deal_card())
-            else:
-                break
         else:
             break
-
-
+        
     compare()
     retry = input("Would you play once more?(y/n)")
     if retry == "n":
