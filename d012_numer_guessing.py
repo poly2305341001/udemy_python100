@@ -7,7 +7,7 @@
 # Track the number of turns remaining.
 # If they run out of turns, provide feedback to the player. 
 # Include two different difficulty levels (e.g., 10 guesses in easy mode, only 5 guesses in hard mode).
-import random
+from random import randint
 from d012_module import logo
 
 print(logo)
@@ -17,7 +17,7 @@ def playgame():
     chances = 20 - level*2
     print(f"You start with {chances} chances")
 
-    number = random.randint(1, 100)
+    number = randint(1, 100)
 
     while 1:
         guessing = int(input("Guess the number between 1 and 100:) \n "))
