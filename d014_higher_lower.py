@@ -5,7 +5,7 @@ import random
 # 중복없이 뽑기 함수
 def randomchoice():
   chosen = random.choice(left_data)
-  left_data.remove(chosen) #이게 함수 안에서 유효한지 모르겠네 흠
+  left_data.remove(chosen) #이게 함수 안에서 유효한지 모르겠네 흠 -> 매우 유효하구만
   return chosen
 
 # 게임 시작
@@ -26,9 +26,9 @@ compare_B = randomchoice()
 
 while game_over == False:
   # 팔로워 비교해서 더 많은 애를 답으로 설정해놔야지
-  right_answer = compare_A.copy()
+  right_answer = compare_A
   if compare_A['follower_count'] < compare_B['follower_count']: 
-    right_answer = compare_B.copy()
+    right_answer = compare_B
 
   # 두 데이터 정보 줘야지
   print(f"Compare A: {compare_A['name']}, a(an) {compare_A['description']}, from {compare_A['country']}")
@@ -38,9 +38,9 @@ while game_over == False:
   # 유저야 선택해라
   user_choice = input("\nWho has more followers? Type 'A' or 'B': ").upper()
   if user_choice == 'A':
-    user_choice = compare_A.copy()
+    user_choice = compare_A
   elif user_choice == 'B':
-    user_choice = compare_B.copy()
+    user_choice = compare_B
 
   # 유저 답이랑 비교하고 맞으면 1점 더해주고 다음 단계
   if user_choice == right_answer:
@@ -48,7 +48,7 @@ while game_over == False:
     print(f"You're right! Current score: {score}.\nKeep going.\n")
 
     # 팔로워 더 많은 애를 A로 옮기고 새로운 데이터 데려 와서 B에 넣어
-    compare_A = right_answer.copy()
+    compare_A = right_answer
     compare_B = randomchoice()
 
     # 다시 비교하고 무한 반복
