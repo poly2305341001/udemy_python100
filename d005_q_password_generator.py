@@ -17,18 +17,17 @@ ct_numbers = int(input(f'숫자는 몇개?\n '))
 
 # for문, list, random 활용 비번 생성쓰
 
-
-# random.randint 리스트 원소의 인덱스를 무작위로 골라 다른 리스트에 넣기
+# random.choice 리스트의 원소를 무작위로 골라 다른 리스트에 넣기
 pw_list = [0]*ct_letters
 
 for num in range(0,ct_numbers):
-    pw_list[num] = numbers[random.randint(0,len(numbers)-1)]
+    pw_list[num] = random.choice(numbers)
 
 for sym in range(ct_numbers, ct_numbers+ct_symbols):
-    pw_list[sym] = symbols[random.randint(0,len(symbols)-1)]
+    pw_list[sym] = random.choice(symbols)
 
 for let in range(ct_numbers+ct_symbols, ct_letters):
-    pw_list[let] = letters[random.randint(0,len(letters)-1)]
+    pw_list[let] = random.choice(letters)
 
 random.shuffle(pw_list)
 
@@ -42,4 +41,4 @@ for pw in pw_list:
 #  2
 # 숫자는 몇개?
 #  3
-# NuN&6dr6M8S$
+# Amu&Lj96)l2B
