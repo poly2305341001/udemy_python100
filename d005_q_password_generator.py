@@ -30,10 +30,20 @@ for let in range(0,ct_letters - ct_numbers - ct_symbols):
 
 chosen_list = [chosen_let, chosen_num, chosen_sym]     
 pw_list = []
-
+'''
 for sublist in chosen_list:         # 중첩리스트를 단일의 리스트로 만들고 싶었음
     pw_list.extend(sublist)
 random.shuffle(pw_list)         # 섞어섞어
 
 pw =''.join(pw_list)    # 리스트의 요소들을 나열해서 ''로 구분된 문자열로 만들어줌 
 print('생성된 비밀번호: '+ pw)
+'''
+# join() 안 쓰고 extend()도 안 쓰고 완전 재래식 코딩해보자
+for i in range(0,len(chosen_list)):
+    for j in range(0,len(chosen_list[i])):
+        pw_list.append(chosen_list[i][j])
+
+random.shuffle(pw_list)
+
+for pw in pw_list:
+    print(pw, end='')
