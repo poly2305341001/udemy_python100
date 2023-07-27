@@ -3,10 +3,10 @@ from turtle import Turtle
 
 class Paddle(Turtle):
 
-    def __init__(self):
+    def __init__(self, pos):
         super().__init__()
         self.penup()
-        self.setpos(350, 0)
+        self.setpos(pos)
         self.color("white")
         self.shape("square")
         self.setheading(90)
