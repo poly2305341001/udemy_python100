@@ -2,9 +2,19 @@ from tkinter import *
 from quiz_brain import QuizBrain
 from PIL import Image
 # pip install pillow
+import os
+import sys
 
 THEME_COLOR = "#FFDE70"
 FONT_COLOR = "#0a0a0a"
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 class QuizInterface:
 
@@ -13,6 +23,7 @@ class QuizInterface:
         self.window = Tk()
         self.window.title("컴퓨터과학 OX")
         self.window.config(padx=30, pady=20, bg=THEME_COLOR)
+        self.window.iconbitmap(resource_path('images/quiz.ico'))
 
         self.score_label = Label(text="Score: 0", fg="black", bg=THEME_COLOR, font=("Arial", 10, "bold"))
         self.score_label.grid(row=0, column=1)
@@ -31,14 +42,14 @@ class QuizInterface:
         # img = Image.open("images/letter-o.png")
         # resized = img.resize((100,100))
         # resized.save("images/button-o.png")
-        o_image = PhotoImage(file="images/button-o.png")
+        o_image = PhotoImage(file=resource_path("images/button-o.png"))
         self.o_button = Button(image=o_image, highlightthickness=0, command=self.o_pressed, bd=0, bg=THEME_COLOR)
         self.o_button.grid(row=2, column=0, pady=10)
 
         # img = Image.open("images/letter-x.png")
         # resized = img.resize((100,100))
         # resized.save("images/button-x.png")
-        x_image = PhotoImage(file="images/button-x.png")
+        x_image = PhotoImage(file=resource_path("images/button-x.png"))
         self.x_button = Button(image=x_image, highlightthickness=0, command=self.x_pressed, bd=0, bg=THEME_COLOR)
         self.x_button.grid(row=2, column=1, pady=10)
 
@@ -71,4 +82,4 @@ class QuizInterface:
             self.canvas.config(bg="#53AD69")
         else:
             self.canvas.config(bg="#FF4855")
-        self.window.after(500, self.get_next_question)
+        self.window.after(1000, self.get_next_question)
